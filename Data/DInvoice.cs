@@ -1,8 +1,10 @@
 ﻿using Entity;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -44,5 +46,23 @@ namespace Data
             }
             return invoices;
         }
+        public void DeleteInvoice(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(StringConnect))
+            {
+                conn.Open();
+                string query = "DeleteInvoice";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@invoice_id", SqlDbType.Int));
+                    cmd.Parameters["@invoice_id"].Value = id;
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
+        }
     }
+
+   
 }

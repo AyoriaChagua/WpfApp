@@ -7,6 +7,28 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="dataGrid" AutoGenerateColumns="True" />
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DatePicker x:Name="datepicker"  Grid.Row="0" Margin="300,0,286,184"/>
+        <Button Content="Buscar"  Grid.Row="0" HorizontalAlignment="Left" Margin="534,7,0,0" VerticalAlignment="Top" Click="ListInvoiceByDate"/>
+        <Button Content="Listar" Grid.Row="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.232,0.39" Click="Listar"/>
+
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" Margin="5,46,10,0" Grid.RowSpan="2" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Invoice ID" Binding="{Binding Invoice_id}" />
+                <DataGridTextColumn Header="Customer ID" Binding="{Binding Customer_id}" />
+                <DataGridTextColumn Header="Date" Binding="{Binding Date}" />
+                <DataGridTextColumn Header="Total" Binding="{Binding Total}" />
+                <DataGridTemplateColumn Header="Acción">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Eliminar" Click="DeleteInvoice" CommandParameter="{Binding Invoice_id}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
