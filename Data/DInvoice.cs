@@ -12,7 +12,7 @@ namespace Data
 {
     public class DInvoice
     {
-        static string StringConnect = "Data Source=LAB1504-09\\SQLEXPRESS;Initial Catalog=lab08;User ID = tecsup; Password=123456";
+        static string StringConnect = "Data Source=LAB1504-09\\SQLEXPRESS;Initial Catalog=mydb;User ID = tecsup; Password=123456";
 
         public List<Invoice> GetInvoices()
         {

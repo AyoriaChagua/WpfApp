@@ -1,5 +1,6 @@
 ﻿using Data;
 using Entity;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -24,8 +25,11 @@ namespace Bussines
         { 
             DInvoice data = new DInvoice();
             var invoices = GetInvoiceActives();
-            var result = invoices.Where(x => x.Date.Date == date.Date).ToList();
-            return result;
+            foreach (var invoice in invoices)
+            {
+                DateTime dates = invoice.Date;
+            }
+            return invoices;
         }
 
         public void DeleteInvoice(int id) 
