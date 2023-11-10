@@ -32,6 +32,12 @@ namespace Bussines
             return invoices;
         }
 
+        public void InsertInvoice(int customer_id, DateTime date, decimal total)
+        {
+            DInvoice data = new DInvoice();
+            data.InsertInvoice(customer_id, date, total);
+        }
+
         public void DeleteInvoice(int id) 
         {
             DInvoice data = new DInvoice();

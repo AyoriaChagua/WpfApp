@@ -46,6 +46,29 @@ namespace Data
             }
             return invoices;
         }
+
+        public void InsertInvoice(int customer_id, DateTime date, decimal total) 
+        {
+            using (SqlConnection conn = new SqlConnection(StringConnect))
+            {
+                conn.Open();
+                string query = "InsertInvoice";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@customer_id", SqlDbType.Int));
+                    cmd.Parameters.Add(new SqlParameter("@date", SqlDbType.Date));
+                    cmd.Parameters.Add(new SqlParameter("@total", SqlDbType.Decimal));
+
+                    cmd.Parameters["@customer_id"].Value = customer_id;
+                    cmd.Parameters["@date"].Value = date;
+                    cmd.Parameters["@total"].Value = total;
+
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
+        }
         public void DeleteInvoice(int id)
         {
             using (SqlConnection conn = new SqlConnection(StringConnect))
